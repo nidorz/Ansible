@@ -1,0 +1,23 @@
+---
+- name: Set timezone and configure timesyncd
+  hosts: piholes, general_servers
+  vars_files:
+    - '../vars/vars.yml'
+  become: yes
+
+  tasks:
+  - name: Set timezone
+    shell: timedatectl set-timezone Europe/Oslo
+
+  - name: Stop timesyncd
+    systemd:
+      name: systemd-timesyncd.service
+      state: stopped
+
+  - name: Copy timesyncd config
+    template: src=../templates/timesyncd.conf dest=/etc/systemd/timesyncd.conf
+
+  - name: Restart timesyncd
+    systemd:
+      name: systemd-timesyncd.service
+      state: started

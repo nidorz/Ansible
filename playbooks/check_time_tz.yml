@@ -1,0 +1,22 @@
+---
+- hosts: piholes, general_servers
+  vars_files:
+    - '../vars/vars.yml'
+  become: yes
+  tasks:
+
+    - name: Get date
+      command: date
+      register: date_var
+      changed_when: False
+
+    - name: Get timezone
+      shell: timedatectl | grep -i zone
+      register: TZ
+      changed_when: False
+
+    - name: Print date_var
+      debug: var=date_var.stdout
+ 
+    - name: Print TZ
+      debug: var=TZ.stdout

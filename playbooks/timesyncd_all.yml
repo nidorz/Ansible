@@ -1,0 +1,10 @@
+---
+- hosts: piholes, general_servers
+  vars_files:
+    - '../vars/vars.yml'
+  become: yes
+  tasks:
+    - name: Ensure systemd-timesyncd is installed
+      apt: name=systemd-timesyncd state=latest
+    - name: Ensure systemd-timesyncd is running
+      service: name=systemd-timesyncd state=started enabled=yes

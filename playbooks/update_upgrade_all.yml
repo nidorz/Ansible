@@ -1,0 +1,9 @@
+---
+- hosts: piholes, general_servers
+  vars_files:
+    - '../vars/vars.yml'
+  become: yes
+  tasks:
+    - name: Update Repos
+      become: true
+      apt: update_cache=yes upgrade=yes cache_valid_time=86400 #One day

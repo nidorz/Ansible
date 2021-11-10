@@ -1,0 +1,8 @@
+---
+- hosts: piholes, general_servers
+  vars_files:
+    - '../vars/vars.yml'
+  become: yes
+  tasks:
+  - name: Install docker
+    apt: name=docker state=latest

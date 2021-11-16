@@ -1,0 +1,10 @@
+---
+- hosts: piholes, general_servers
+  vars_files:
+    - '../vars/vars.yml'
+  become: yes
+  tasks:
+
+    - name: set datetime format
+      become: true
+      shell: localectl set-locale LC_TIME="en_GB.UTF-8"

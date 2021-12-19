@@ -1,6 +1,6 @@
 ---
 - name: Set timezone and configure timesyncd
-  hosts: piholes, general_servers
+  hosts: all
   vars_files:
     - '../vars/vars.yml'
   become: yes

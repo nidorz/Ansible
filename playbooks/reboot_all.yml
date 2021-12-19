@@ -1,0 +1,11 @@
+---
+- hosts: all
+  vars_files:
+    - '../vars/vars.yml'
+  become: yes
+  tasks:
+
+    - name: Reboot VMs
+      become: true
+      reboot:
+        reboot_timeout: 300
